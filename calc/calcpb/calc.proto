@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package calc;
+
+option go_package = "calcpb";
+
+service CalculatorService {
+    rpc CalcSum (CalcSumRequest) returns (CalcSumResponse) {};
+}
+
+message AdditionArgs {
+    repeated int32 arg = 1;
+}
+
+
+message CalcSumRequest {
+    AdditionArgs args = 1;
+}
+
+message CalcSumResponse {
+    int32 sum = 1;
+}
+
