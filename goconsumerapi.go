@@ -5,8 +5,12 @@ import (
     "io/ioutil"
     "log"
     "net/http"
+    "encoding/json"
 )
 
+type Message struct {
+ Response string
+}
 func main() {
     res, err := http.Get("http://localhost:8080/greet/")
 
@@ -19,6 +23,9 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    fmt.Println(string(body))
+   
+    var msg Message
+    json.Unmarshal(body, &msg)
+    fmt.Println(msg)
 
 }
