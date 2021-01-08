@@ -20,4 +20,3 @@ message CalcSumRequest {
 message CalcSumResponse {
     int32 sum = 1;
 }
-

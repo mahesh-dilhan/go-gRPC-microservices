@@ -15,9 +15,7 @@ func main() {
 	defer conn.Close()
 
 	clnt := calcpb.NewCalculatorServiceClient(conn)
-
 	callAdditionService(clnt)
-
 }
 
 func callAdditionService(clnt calcpb.CalculatorServiceClient) {
@@ -34,3 +32,4 @@ func callAdditionService(clnt calcpb.CalculatorServiceClient) {
 	}
 	log.Println("Sum =", res.GetSum())
 }
+

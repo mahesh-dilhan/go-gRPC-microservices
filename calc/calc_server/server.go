@@ -35,3 +35,4 @@ func (*server) CalcSum(ctx context.Context, req *calcpb.CalcSumRequest) (*calcpb
 	}
 	return res, nil
 }
+
