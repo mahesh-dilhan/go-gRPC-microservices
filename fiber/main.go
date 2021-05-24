@@ -2,13 +2,17 @@ package main
 
 import "github.com/gofiber/fiber"
 
+func helloFromFiber(c *fiber.Ctx) {
+	c.Send("Hello, World!")
+}
+
+func routers(app *fiber.App) {
+	app.Get("/", helloFromFiber)
+}
+
 func main() {
 
 	app := fiber.New()
-
-	app.Get("/", func(c *fiber.Ctx) {
-		c.Send("Hello, World!")
-	})
-
+	routers(app)
 	app.Listen(4003)
 }
