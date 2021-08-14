@@ -11,11 +11,22 @@ type Student struct {
 }
 
 func (s *Student) Add(payload Student, reply *Student) error {
-
+	exists, ok := 
+	
 	return nil
 }
 
 func Get(payload Student, reply *Student) error {
 
 	return nil
+}
+
+func  NewCollege() *College {
+	//return &College{
+	//	database: make(map[int]Student),
+	//}
+	//
+	c := new(College)
+	c.database = make(map[int]Student)
+	return c
 }
