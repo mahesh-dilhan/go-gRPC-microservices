@@ -19,11 +19,12 @@ func main() {
 		PositiveCases: 100,
 	}
 
+	id2 := who.Key{
+		Name:  "SG",
+		State: "SGK",
+	}
 	payload2 := who.Country{
-		K: who.Key{
-			Name:  "SG",
-			State: "SGK",
-		},
+		K:             id2,
 		PositiveCases: 100,
 	}
 
@@ -37,5 +38,17 @@ func main() {
 		fmt.Println("unable to Add", err)
 	} else {
 		fmt.Printf("sucess '%v'\n", covidcountry.K)
+	}
+
+	if err := client.Call("WHO.Get", payload, &covidcountry); err != nil {
+		fmt.Println("unable to find ", err)
+	} else {
+		fmt.Printf("found '%v' '%v'\n", covidcountry.K, covidcountry.PositiveCases)
+	}
+
+	if err := client.Call("WHO.Get", payload2, &covidcountry); err != nil {
+		fmt.Println("unable to find ", err)
+	} else {
+		fmt.Printf("found '%v' '%v'\n", covidcountry.K, covidcountry.PositiveCases)
 	}
 }
