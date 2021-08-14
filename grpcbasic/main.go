@@ -1,8 +1,11 @@
 package main
 
-import "github.com/mahesh-dilhan/grpcbasic/common"
+import (
+	"fmt"
+	"github.com/mahesh-dilhan/grpcbasic/who"
+)
 
 func main() {
-	w := common.NewWHO()
-
+	w := who.NewWHO()
+	fmt.Println(w)
 }
