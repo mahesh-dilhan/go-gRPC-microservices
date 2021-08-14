@@ -2,35 +2,39 @@ package common
 
 import "fmt"
 
-type College struct {
-	database map[int]Student
+type KEY struct {
+	name  string
+	state string
+}
+type Country struct {
+	key           KEY
+	positiveCases int
 }
 
-type Student struct {
-	ID        int
-	firstname string
-	lastname  string
+type WHO struct {
+	database map[KEY]Country
 }
 
-func (c *College) Add(payload Student, reply *Student) error {
-	if _, ok := c.database[payload.ID]; ok {
-		return fmt.Errorf("Already exits ID '%d' ", payload.ID)
+func NewWHO() *WHO {
+	return &WHO{
+		database: make(map[KEY]Country),
 	}
+}
 
+func (w *WHO) Add(payload Country, reply *Country) error {
+	if _, ok := w.database[payload.key]; ok {
+		return fmt.Errorf("already in the list '%v'", payload.key)
+	}
+	w.database[payload.key] = payload
+	*reply = payload
 	return nil
 }
 
-func (c *College) Get(payload Student, reply *Student) error {
-
-	return nil
-}
-
-func NewCollege() *College {
-	return &College{
-		database: make(map[int]Student),
+func (w *WHO) Get(payload Country, reply *Country) error {
+	results, ok := w.database[payload.key]
+	if !ok {
+		return fmt.Errorf("unable to fine in the database '%v'", payload.key)
 	}
-
-	//c := new(College)
-	//c.database = make(map[int]Student)
-	//return c
+	*reply = results
+	return nil
 }
