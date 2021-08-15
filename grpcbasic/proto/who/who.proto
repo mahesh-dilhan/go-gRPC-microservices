@@ -1,0 +1,13 @@
+syntax="proto3";
+
+option go_package = "./region";
+
+message Region {
+  Key k =1;
+  int32 positiveCases=2;
+}
+
+message Key {
+  string name =1;
+  string state =2;
+}
