@@ -14,6 +14,7 @@ func main() {
 			State: "NY",
 		},
 		PositiveCases: 1000000,
+		Status:        region.Region_MILD,
 	}
 
 	//fmt.Println(cntry)
@@ -23,5 +24,14 @@ func main() {
 		fmt.Println("Error in marshell", err)
 	}
 	fmt.Println(data)
+
+	r := &region.Region{}
+
+	err = json.Unmarshal(data, r)
+	if err != nil {
+		fmt.Println("Error unmarshal", err)
+	}
+	fmt.Println(r)
+	fmt.Println(r.GetStatus())
 
 }

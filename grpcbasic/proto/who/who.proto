@@ -6,6 +6,12 @@ option go_package = "./region";
 message Region {
   Key k =1;
   int32 positiveCases=2;
+
+  enum Severity {
+    MILD =0;
+    CRITICAL=2;
+  }
+  Severity status=3;
 }
 
 message Key {
